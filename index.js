@@ -20,7 +20,8 @@ client.connect(err => {
   
     app.post('/addProduct', (req, res) => {
         const products = req.body;
-        productsCollection.insertOne(products)
+        console.log(products);
+        productsCollection.insertMany(products)
         .then(result => {
             console.log(result.insertedCount);
             res.send(result.insertedCount)
@@ -58,7 +59,9 @@ client.connect(err => {
     })
 
 });
-
-app.listen(process.env.PORT || 5000, function() {
-    console.log("Server started.......");
-});
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+  })
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+  })
