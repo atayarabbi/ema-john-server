@@ -13,8 +13,6 @@ app.use(cors());
 
 const port = 5000;
 
-
-
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
   const productsCollection = client.db("emaJohnStore").collection("products");
@@ -61,5 +59,6 @@ client.connect(err => {
 
 });
 
-
-app.listen(port)
+app.listen(process.env.PORT || 5000, function() {
+    console.log("Server started.......");
+});
